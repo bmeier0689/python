@@ -69,3 +69,60 @@ def divisible(listInput, intInput):
     return count
 
 print(divisible([3,6,9,10], 3))
+
+def birthdayChecker(birthday):
+    if int(birthday[4]) > int("06/13/2022"):
+        print(birthday[0])
+        return True
+    else:
+        return False
+
+print(birthdayChecker("05/30/1995"))
+print(birthdayChecker("11/05/1959"))
+
+person = {"first": "Ada", "last": "Lovelace", "age": 42, "is_organ_donor": True}
+# Adds a new key value pair for email to person
+person["email"] = "alovelace@codingdojo.com"
+        
+# Changes person's "last" value to "Bobada"
+person["last"] = "Bobada"
+print(person)
+
+print(person["first"])
+full_name = person["first"] + " " + person["last"]
+print(full_name)
+
+value_removed = person.pop("age")
+print(value_removed)
+del person["is_organ_donor"]
+print(person)
+
+person.clear()
+print(person)
+
+my_dict = { "name": "Noelle", "language": "Python" }
+for each_key in my_dict:
+    print(each_key)
+# output: name, language
+
+for each_key in my_dict:
+    print(my_dict[each_key])
+
+    # List of dictionaries
+users = [
+    {"first": "Ada", "last": "Lovelace"}, # index 0
+    {"first": "Alan", "last": "Turing"}, # index 1
+    {"first": "Eric", "last": "Idle"} # index 2
+]
+# Dictionary of lists
+resume_data = {
+    #        	     0           1           2
+    "skills": ["front-end", "back-end", "database"],
+    #                0           1
+    "languages": ["Python", "JavaScript"],
+    #                0              1
+    "hobbies":["rock climbing", "knitting"]
+}
+
+print(resume_data["skills"][1])
+print(users[2]["first"])
