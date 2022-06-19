@@ -1,11 +1,4 @@
-#1 Done
-# Change the value 10 in x to 15. Once you're done, x should now be [ [5,2,3], [15,8,9] ].
-# Change the last_name of the first student from 'Jordan' to 'Bryant'
-# In the sports_directory, change 'Messi' to 'Andres'
-# Change the value 20 in z to 30
-from multiprocessing.sharedctypes import Value
-
-
+#1
 x = [ [5,2,3], [10,8,9] ] 
 students = [
     {'first_name':  'Michael', 'last_name' : 'Jordan'},
@@ -27,7 +20,7 @@ print(students)
 print(sports_directory)
 print(z)
 
-#2 Done
+#2
 def iterateDictionary(some_list):
     for i in some_list:
         for key, value in i.items():
@@ -41,18 +34,12 @@ students = [
 ]
 iterateDictionary(students) 
 
-# should output: (it's okay if each key-value pair ends up on 2 separate lines;
-# bonus to get them to appear exactly as below!)
-# first_name - Michael, last_name - Jordan
-# first_name - John, last_name - Rosales
-# first_name - Mark, last_name - Guillen
-# first_name - KB, last_name - Tonel
-
 #3
-def iterateDictionary2(key_name, some_list):
-    for i in some_list:
-        for value in i.values():
-            print(value)
+def iterateDictionary2(key_name, list):
+    for i in range(0, len(list)):
+        for key, val in list[i].items():
+            if key == key_name:
+                print(val)
 
 students = [
     {'first_name':  'Michael', 'last_name' : 'Jordan'},
@@ -60,16 +47,19 @@ students = [
     {'first_name' : 'Mark', 'last_name' : 'Guillen'},
     {'first_name' : 'KB', 'last_name' : 'Tonel'}
 ]
-
 iterateDictionary2('first_name', students)
+iterateDictionary2('last_name', students)
 
 #4
-def printInfo(some_dict):
-    for i in some_dict:
-
 dojo = {
     'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
     'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
 }
+
+def printInfo(some_dict):
+    for key, val in some_dict.items():
+        print(f"{len(val)} {key.upper()}")
+        for i in range(0, len(val)):
+            print(val[i])
 
 printInfo(dojo)
