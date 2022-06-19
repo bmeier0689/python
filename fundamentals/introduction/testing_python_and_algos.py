@@ -1,4 +1,6 @@
+from datetime import date
 import random
+import re
 
 print('Welcome to Python!')
 
@@ -70,12 +72,24 @@ def divisible(listInput, intInput):
 
 print(divisible([3,6,9,10], 3))
 
-def birthdayChecker(birthday):
-    if int(birthday[4]) > int("06/13/2022"):
-        print(birthday[0])
-        return True
+def birthdayChecker(dateInput):
+    today = "06/13/2022"
+    birthday = ''
+    if int(today[0:2]) > int(dateInput[0:2]):
+        birthday = True
+    elif int(today[0:2]) < int(dateInput[0:2]):
+        birthday = False
+    elif int(today[3:5]) >= int(dateInput[3:5]):
+        birthday = True
     else:
-        return False
+        birthday = False
+    if birthday == True:
+        age = int(today[6:]) - int(dateInput[6:])
+        bdaystring = "has"
+    else:
+        age = int(today[6:]) - int(dateInput[6:]) - 1
+        bdaystring = "has not"
+    return "User is currently " + str(age) + " years old and " + bdaystring + " had their birthday this year"
 
 print(birthdayChecker("05/30/1995"))
 print(birthdayChecker("11/05/1959"))
@@ -126,3 +140,34 @@ resume_data = {
 
 print(resume_data["skills"][1])
 print(users[2]["first"])
+
+
+def minimumValue(listInput):
+    minValue = listInput[0]
+    for value in listInput:
+        if value < minValue:
+            minValue = value
+    return minValue
+
+def maximumValue(listInput):
+    maxValue = listInput[0]
+    for value in listInput:
+        if value > maxValue:
+            maxValue = value
+    return maxValue
+
+def averageValue(listInput):
+    sumValues = listInput[0]
+    for i in range(1,len(listInput),1):
+        sumValues += listInput[i]
+    return sumValues/len(listInput)
+
+def minMaxAverage(listInput):
+    minValue = minimumValue(listInput)
+    maxValue = maximumValue(listInput)
+    avgValue = averageValue(listInput)
+    return [minValue, maxValue, avgValue]
+
+print(minMaxAverage([4,7,0,2,18]))
+print(minimumValue([-3,5,6,9,12]))
+print(maximumValue([4,7,2,18,0]))
