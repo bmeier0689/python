@@ -22,6 +22,12 @@ class User:
         print(f"User: {self.name}, Savings Balance: {self.account['savings'].display_account_info()}")
         return self
 
+    def transfer_money(self, amount, other_user):
+        self.account["checking"].withdraw(amount)
+        other_user.account["checking"].deposit(amount)
+        return self
+
+
 class BankAccount:
     def __init__(self, int_rate, balance):
         self.int_rate = int_rate
@@ -51,3 +57,8 @@ brad = User("Brad", "bmeier@gmail.com")
 brad.account["checking"].deposit(1000)
 brad.account["savings"].deposit(1500)
 brad.display_user_balance()
+
+bob = User("Bob", "bobsemail.com")
+brad.transfer_money(500, bob).display_user_balance
+
+bob.display_user_balance()
