@@ -58,7 +58,7 @@ brad.account["checking"].deposit(1000)
 brad.account["savings"].deposit(1500)
 brad.display_user_balance()
 
-bob = User("Bob", "bobsemail.com")
+bob = User("Bob", "bobsemail@email.com")
 brad.transfer_money(500, bob).display_user_balance
 
 bob.display_user_balance()
