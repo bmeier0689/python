@@ -10,11 +10,11 @@ class Player:
         return display
 
     @classmethod
-    def add_players(cls, data):
-        player_objects = []
-        for dict in data:
-            player_objects.append(cls(dict))
-        return player_objects
+    def get_team(cls, team_list):
+        teams = []
+        for team in team_list:
+            teams.append(team)
+        print(teams)
 
 kevin = {
     "name": "Kevin Durant", 
@@ -88,4 +88,4 @@ for player_dict in players:
     new_team.append(player)
 
 print(new_team)
-Player.add_players()
+Player.get_team(new_team)
