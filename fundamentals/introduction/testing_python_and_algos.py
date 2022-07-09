@@ -1,4 +1,5 @@
 from datetime import date
+from distutils.command.build import build
 import random
 import re
 
@@ -171,3 +172,91 @@ def minMaxAverage(listInput):
 print(minMaxAverage([4,7,0,2,18]))
 print(minimumValue([-3,5,6,9,12]))
 print(maximumValue([4,7,2,18,0]))
+
+
+def heights(buildingList):
+    visible = [buildingList[0]]
+    currentHighest = buildingList[0]
+    for i in range(1, len(buildingList)):
+        if buildingList[i] > currentHighest:
+            visible.append(buildingList[i])
+            currentHighest = buildingList[i]
+
+    return visible
+
+print(heights([1,4,2,3,5]))
+
+def rootFinder(numInput):
+    for i in range(numInput+1):
+        if i*i == numInput:
+            return True
+    return False
+
+import math
+print(math.sqrt(64))
+
+def modulusRootFinder(numInput):
+    return not math.sqrt(numInput)%1
+
+print(modulusRootFinder(63))
+
+def stringRootFinder(numInput):
+    return len(str(math.sqrt(numInput))) == 3
+
+print(stringRootFinder(64))
+
+
+def coinCalculator(cents):
+    output = {}
+    output['quarters'] = cents//25
+    cents = cents % 25
+    output['dimes'] = cents//10
+    cents= cents % 10
+    output['nickels'] = cents//5
+    output['pennies'] = cents % 5
+    return output
+
+print(coinCalculator(99))
+
+def whileCoin(numCents):
+    output = {"Quarters":0, "Dimes": 0, "Nickles": 0, "Pennies": 0}
+    while (numCents>0):
+        if numCents >= 25:
+            numCents -= 25
+            output['Quarters'] += 1
+        elif numCents >= 10:
+            numCents -= 10
+            output['Dimes'] += 1
+        elif numCents >= 5:
+            numCents -= 5
+            output['Nickles'] += 1
+        else:
+            output['Pennies'] = numCents
+            numCents = 0
+    return output
+
+print(whileCoin(99))
+
+
+def ThreesFives():
+    sum = 0
+    for i in range(100, 4000001):
+        if i % 15 == 0:
+            pass
+        elif i % 3 == 0 or i % 5 == 0:
+            sum += i
+    return sum
+
+print(ThreesFives())
+
+def sumToOne(num):
+    if len(str(num)) == 1:
+        return num
+    while len(str(num)) > 1:
+        temp = 0
+        for i in range (len(str(num))):
+            temp += int(str(num)[i])
+        num = temp
+    return num
+
+print(sumToOne(3321))
