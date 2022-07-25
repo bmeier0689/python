@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="container bg-dark col-3 my-5 mx-auto">
+        <h1 class="text-success ">Dojo Survey</h1>
+        <form action="/info" method="post" class="d-flex flex-column">
+            <label for="name" class="text-success" >Your Name:</label> <input type="text" name="name">
+            <p class="text-success">Select your Dojo Location:</p>
+            <div class="custom-control custom radio ">
+                <input type="radio" name="location" id="sanjose" value="San Jose">
+                <label for="sanjose" class="text-success">San Jose</label>
+                <input type="radio" name="location" id="losangeles" value="Los Angeles">
+                <label for="losangeles" class="text-success">Los Angeles</label>
+                <input type="radio" name="location" id="online" value="Online">
+                <label for="online" class="text-success">Online</label>
+            </div>
+            <label for="language" class="text-success">Favorite language:</label> <input type="text" name="language" style="margin-bottom: 5px;">
+            <label for="comment" class="text-success">Comment (optional):</label>
+            <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
+            <input id="submit" type="submit" name="submit" value="Submit" class="bg-success">
+        </form>
+    </div>
+</body>
+</html>

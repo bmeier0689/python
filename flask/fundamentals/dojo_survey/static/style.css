@@ -1,0 +1,22 @@
+#comment {
+    margin-bottom: 10px;
+}
+
+#submit {
+    margin-bottom: 10px;
+    width: 70px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container {
+    border: 2px solid black;
+}
+
+.custom-control {
+    padding-left: 0;
+}
+
+p {
+    margin: 5px 0px;
+}
