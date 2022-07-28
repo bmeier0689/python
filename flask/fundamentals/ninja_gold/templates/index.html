@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div id="main" class="container">
+        <label for="your_gold">Your Gold:</label>
+        <input type="number" value="{{session['gold']}}">
+        <div class="d-flex">
+            <div class="container">
+                <form method="post" action="/process_money">
+                    <input type="hidden" name="get_gold" value="rice_paddy">
+                    <h4>Rice Paddy</h4>
+                    <p>(earns 10-20 gold)</p>
+                    <input type="submit" name="rice_paddy" id="rice_paddy" value="Find Gold!">
+                </form>
+            </div>
+            <div class="container">
+                <form method="post" action="/process_money">
+                    <input type="hidden" name="get_gold" value="hideout">
+                    <h4>Hideout</h4>
+                    <p>(earns 5-10 gold)</p>
+                    <input type="submit" name="hideout" id="hideout" value="Find Gold!">
+                </form>
+            </div>
+            <div class="container">
+                <form method="post" action="/process_money">
+                    <input type="hidden" name="get_gold" value="yashiki">
+                    <h4>Yashiki</h4>
+                    <p>(earns 2-5 gold)</p>
+                    <input type="submit" name="yashiki" id="yashiki" value="Find Gold!">
+                </form>
+            </div>
+            <div class="container">
+                <form method="post" action="/process_money">
+                    <input type="hidden" name="get_gold" value="dice_den">
+                    <h4>Dice Den</h4>
+                    <p>(earns/takes 0-50 gold)</p>
+                    <input type="submit" name=dice_den id=dice_den value="Find Gold!">
+                </form>
+            </div>
+        </div>
+        <h5>Activities:</h5>
+        <div class="container">
+            <ul>
+                {% for outcome in session['winnings'] %}
+                <li>{{outcome}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a id="submit" class="btn btn-danger" style="border: 2px solid black; width: auto;" href="/">Return</a>
+    </div>
+</body>
+</html>
