@@ -10,8 +10,8 @@
     <title>Ninja Gold</title>
 </head>
 <body>
-    <div id="main" class="container">
-        <label for="your_gold">Your Gold:</label>
+    <div id="main" class="container bg-dark">
+        <label for="your_gold" class="text-light" style="margin-top: 1.5rem;">Your Gold:</label>
         <input type="number" value="{{session['gold']}}">
         <div class="d-flex">
             <div class="container">
@@ -19,7 +19,7 @@
                     <input type="hidden" name="get_gold" value="rice_paddy">
                     <h4>Rice Paddy</h4>
                     <p>(earns 10-20 gold)</p>
-                    <input type="submit" name="rice_paddy" id="rice_paddy" value="Find Gold!">
+                    <input type="submit" name="rice_paddy" id="rice_paddy" value="Earn Gold!">
                 </form>
             </div>
             <div class="container">
@@ -32,10 +32,10 @@
             </div>
             <div class="container">
                 <form method="post" action="/process_money">
-                    <input type="hidden" name="get_gold" value="yashiki">
-                    <h4>Yashiki</h4>
+                    <input type="hidden" name="get_gold" value="castle">
+                    <h4>Shiro</h4>
                     <p>(earns 2-5 gold)</p>
-                    <input type="submit" name="yashiki" id="yashiki" value="Find Gold!">
+                    <input type="submit" name="castle" id="castle" value="Steal Gold!">
                 </form>
             </div>
             <div class="container">
@@ -43,19 +43,22 @@
                     <input type="hidden" name="get_gold" value="dice_den">
                     <h4>Dice Den</h4>
                     <p>(earns/takes 0-50 gold)</p>
-                    <input type="submit" name=dice_den id=dice_den value="Find Gold!">
+                    <input type="submit" name=dice_den id=dice_den value="Gamble Gold!">
                 </form>
             </div>
         </div>
-        <h5>Activities:</h5>
-        <div class="container">
+        <h5 class="text-light">Activities:</h5>
+        <div id="activities" class="container">
             <ul>
-                {% for outcome in session['winnings'] %}
-                <li>{{outcome}}</li>
-                {% endfor %}
+                    {% for earning in session['earnings'] %}
+                        <li class="text-success">{{earning}}</li>
+                    {% endfor %}
+                    {% for loss in session['losses'] %}
+                        <li class="text-danger">{{loss}}</li>
+                    {% endfor %}
             </ul>
         </div>
-        <a id="submit" class="btn btn-danger" style="border: 2px solid black; width: auto;" href="/">Return</a>
+        <a method="get" class="btn btn-danger" style="border: 2px solid black; width: auto; margin-bottom: 20px;" href="/">Reset</a>
     </div>
 </body>
 </html>
