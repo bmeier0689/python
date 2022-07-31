@@ -32,3 +32,11 @@
     overflow-y: auto;
     padding-left: 0px;
 }
+
+.reset input{
+    background-color: firebrick;
+    color: whitesmoke;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
