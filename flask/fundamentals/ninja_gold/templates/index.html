@@ -51,11 +51,8 @@
         <h5 class="text-light">Activities:</h5>
         <div id="activities" class="container">
             <ul>
-                    {% for earning in session['earnings'] %}
-                        <li class="text-success">{{earning}}</li>
-                    {% endfor %}
-                    {% for loss in session['losses'] %}
-                        <li class="text-danger">{{loss}}</li>
+                    {% for activity in session['activities'] %}
+                        {{activity|safe}}
                     {% endfor %}
             </ul>
         </div>

@@ -8,12 +8,10 @@ def index():
     if 'gold' not in session:
         session['tries'] = 15
         session['gold'] = 0
-        session['earnings'] = []
-        session['losses'] = []
+        session['activities'] = []
     if session['tries'] == 0:
         session['gold'] = 0
-        session['earnings'] = []
-        session['losses'] = []
+        session['activities'] = []
         session['tries'] = 15
         print('All session parameters reset to defaults')
     print(session['gold'], "in the bank")
@@ -26,27 +24,27 @@ def process_money():
     if request.form['get_gold'] == 'rice_paddy':
         temp = random.randint(10,20)
         session['gold'] += temp
-        earning = session['earnings']
-        earning.append(f"Your hard work paid off, you earned {temp} gold from the rice paddy!")
-        session['earnings'] = earning
+        earning = session['activities']
+        earning.append(f"<li class='text-success'> Your hard work paid off, you earned {temp} gold from the rice paddy! </li>")
+        session['activities'] = earning
         tries = session['tries']
         session['tries'] -= 1
         print(f"Your hard work paid off, you earned {temp} gold from the rice paddy!")
     if request.form['get_gold'] == 'hideout':
         temp = random.randint(5,10)
         session['gold'] += temp
-        earning = session['earnings']
-        earning.append(f"After rummaging around in the cushions, you found {temp} gold in the hideout!")
-        session['earnings'] = earning
+        earning = session['activities']
+        earning.append(f"<li class='text-success'> After rummaging around in the cushions, you found {temp} gold in the hideout! </li>")
+        session['activities'] = earning
         tries = session['tries']
         session['tries'] -= 1
         print(f"After rummaging around in the cushions, you found {temp} gold in the hideout!")
     if request.form['get_gold'] == 'castle':
         temp = random.randint(2,5)
         session['gold'] += temp
-        earning = session['earnings']
-        earning.append(f"While no one was looking, you stole {temp} gold from the castle!")
-        session['earnings'] = earning
+        earning = session['activities']
+        earning.append(f"<li class='text-success'> While no one was looking, you stole {temp} gold from the castle! </li>")
+        session['activities'] = earning
         tries = session['tries']
         session['tries'] -= 1
         print(f"While no one was looking, you stole {temp} gold from the castle!")
@@ -54,24 +52,24 @@ def process_money():
         temp = random.randint(-50,50)
         if temp >= 0:
             session['gold'] += temp
-            earning = session['earnings']
-            earning.append(f"Nice! You gained {temp} gold while gambling at the dice den!")
-            session['earnings'] = earning
+            earning = session['activities']
+            earning.append(f"<li class='text-success'> Nice! You gained {temp} gold while gambling at the dice den! </li>")
+            session['activities'] = earning
             tries = session['tries']
             session['tries'] -= 1
             print(f"Nice! You gained {temp} gold while gambling at the dice den!")
         elif temp <= 0:
             session['gold'] += temp
-            losses = session['losses']
-            losses.append(f"Aww, too bad! Your wallet is now {temp} gold lighter!")
-            session['losses'] = losses
+            loss = session['activities']
+            loss.append(f"<li class='text-danger'> Aww, too bad! Your wallet is now {temp} gold lighter! </li>")
+            session['activities'] = loss
             tries = session['tries']
             session['tries'] -= 1
             print(f"Aww, too bad! Your wallet is now {temp} gold lighter!")
+    session['activities'].reverse()
     if request.form['get_gold'] == 'reset_game':
         session['gold'] = 0
-        session['earnings'] = []
-        session['losses'] = []
+        session['activities'] = []
         session['tries'] = 15
         print('All session parameters reset to defaults')
     return redirect('/')
