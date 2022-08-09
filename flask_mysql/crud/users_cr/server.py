@@ -23,6 +23,21 @@ def add_user():
     User.save(data)
     return redirect('/')
 
+@app.route('/edit_user')
+def edit_user():
+    User.edit_user
+    return render_template('edit_user.html')
+
+@app.route('/show_user')
+def show_user():
+    user = User.show_user()
+    print(user)
+    return render_template('show_user.html', user = user)
+
+@app.route('/delete_user')
+def delete_user():
+    User.delete_user()
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True)
