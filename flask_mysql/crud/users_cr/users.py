@@ -1,5 +1,5 @@
 from mysqlconnection import connectToMySQL
-
+db = 'users_schema'
 class User:
     def __init__(self, data):
         self.id = data['id']
@@ -12,7 +12,7 @@ class User:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
-        results = connectToMySQL('users_schema').query_db(query)
+        results = connectToMySQL(db).query_db(query)
         users = []
         for user in results:
             users.append(cls(user))
@@ -20,22 +20,20 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (%(fname)s, %(lname)s, %(email)s, NOW(), NOW());"
-        return connectToMySQL('users_schema').query_db(query, data)
+        query = "INSERT INTO users (first_name, last_name, email) VALUES ( %(first_name)s, %(last_name)s, %(email)s );"
+        return connectToMySQL(db).query_db(query, data)
 
     @classmethod
-    def show_user(cls):
-        query = "SELECT first_name, last_name, email, created_at, updated_at FROM users WHERE id = %(id)s;"
-        results = connectToMySQL('users_schema').query_db(query)
-        user = results
-        return user
+    def get_one_user(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        return connectToMySQL(db).query_db(query, data)
 
     @classmethod
-    def edit_user(cls):
-        query = "UPDATE users SET first_name = , last_name = , email = WHERE"
-        return connectToMySQL('users_schema').query_db(query)
+    def update_user(cls, data):
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s;"
+        return connectToMySQL(db).query_db(query, data)
 
     @classmethod
-    def delete_user(cls):
-        query = "DELETE FROM users WHERE;"
-        return connectToMySQL('users_schema').query_db(query)
+    def delete_user(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL(db).query_db(query, data)

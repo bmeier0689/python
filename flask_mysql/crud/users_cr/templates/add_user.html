@@ -9,18 +9,20 @@
     <title>Add a New User</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center form-group col-6 mt-5 mx-auto">
         <h1>Add a New User</h1>
-        <form action="/add_user" method="POST" class="form-group col-3 my-5 mx-auto">
-            <label for="fname" >First Name:</label>
-            <input type="text" name="fname" class="form-control">
-            <label for="lname">Last Name:</label>
-            <input type="text" name="lname" class="form-control">
+        <h4><a href="/">Home</a></h4>
+    </div>
+    <div class="container form-group col-6 my-3 mx-auto">
+        <form action="/add_user" method="POST">
+            <label for="first_name" >First Name:</label>
+            <input type="text" name="first_name" class="form-control">
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" class="form-control">
             <label for="email">Email:</label>
             <input type="text" name="email" class="form-control">
-            <input type="submit" value="Create User">
+            <input type="submit" value="Create User" style="margin-top: 20px;">
         </form>
-        <a href="/">Home</a>
     </div>
 </body>
 </html>

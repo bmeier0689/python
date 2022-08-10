@@ -15,28 +15,38 @@ def new_user():
 
 @app.route('/add_user', methods=["POST"])
 def add_user():
-    data = {
-        "fname": request.form['fname'],
-        "lname": request.form['lname'],
-        "email": request.form['email']
-    }
-    User.save(data)
+    print(request.form)
+    User.save(request.form)
     return redirect('/')
 
-@app.route('/edit_user')
-def edit_user():
-    User.edit_user
-    return render_template('edit_user.html')
+@app.route('/user/<int:id>')
+def one_user(id):
+    data = {
+        'id': id
+    }
+    user = User.get_one_user(data)[0]
+    return render_template("one_user.html", user = user)
 
-@app.route('/show_user')
-def show_user():
-    user = User.show_user()
-    print(user)
-    return render_template('show_user.html', user = user)
+@app.route('/edit_user/<int:id>')
+def edit_user(id):
+    data = {
+        'id': id
+    }
+    user = User.get_one_user(data)[0]
+    return render_template('/edit_user.html', user = user)
 
-@app.route('/delete_user')
-def delete_user():
-    User.delete_user()
+@app.route('/update', methods=["POST"])
+def update_user():
+    print(request.form)
+    User.update_user(request.form)
+    return redirect('/')
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    data = {
+        'id': id
+    }
+    User.delete_user(data)
     return redirect('/')
 
 if __name__ == "__main__":
