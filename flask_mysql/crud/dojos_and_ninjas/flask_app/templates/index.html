@@ -9,24 +9,26 @@
     <title>Dojos</title>
 </head>
 <body>
-    <div class="container d-flex col-7 my-5 mx-auto">
-        <div class="container">
-            <h1>New Dojo</h1>
-            <form action="/add_dojo" method="POST">
+    <div class="container d-flex my-5 mx-auto">
+        <div class="container bg-dark text-white form-group" style="margin:0px 20px; padding: 10px;">
+            <h1 class="text-center">New Dojo</h1>
+            <form action="/add_dojo" method="POST" style="padding-left:20px ;">
                 <label for="name">Name:</label>
-                <input type="text" name="name">
-                <input type="submit" value="Create">
+                <input type="text" name="name" class="form-control" style="width:300px;">
+                <input type="submit" value="Add Dojo" style="margin:10px 0px;">
             </form>
         </div>
-        <div class="container border border-dark rounded text-center">
-            <h1>All Dojos</h1>
-            {% for dojo in all_dojos %}
-            <ul>
-                <a href="/dojo/{{dojo.id}}">{{dojo.name}}</a>
-            </ul>
-            {% endfor %}
+        <div class="container bg-dark text-white" style="padding:10px;">
+            <div class="container border border-dark rounded text-center">
+                <h1>All Dojos</h1>
+                {% for dojo in all_dojos %}
+                <ul>
+                    <a href="/dojo/{{dojo.id}}">{{dojo.name}}</a>
+                </ul>
+                {% endfor %}
+            </div>
+            <a href="/new_ninja" style="font-size:1.3rem; padding-left: 20px; font-weight: 600;">Add Ninja</a>
         </div>
-        <a href="/new_ninja">Add Ninja</a>
     </div>
 </body>
 </html>
