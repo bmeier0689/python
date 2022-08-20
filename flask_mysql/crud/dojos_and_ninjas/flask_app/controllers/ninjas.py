@@ -13,10 +13,10 @@ def add_ninja():
     Ninja.save(request.form)
     return redirect('/')
 
-@app.route('/edit_ninja/<int:id>')
-def edit_ninja(id):
+@app.route('/edit_ninja/<int:ninja_id>')
+def edit_ninja(ninja_id):
     data = {
-        'id': id
+        'ninja_id': ninja_id
     }
     ninja = Ninja.get_one_ninja(data)[0]
     return render_template('/edit_ninja.html', ninja = ninja)
@@ -25,7 +25,7 @@ def edit_ninja(id):
 def update_ninja():
     print(request.form)
     Ninja.update_ninja(request.form)
-    return redirect('/')
+    return redirect(f'/dojo/{request.form["dojo_id"]}')
 
 @app.route('/delete/<int:id>')
 def delete(id):

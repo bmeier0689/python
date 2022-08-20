@@ -14,7 +14,8 @@
         <h1>Edit Ninja</h1>
         <div class="container form-group bg-dark text-white" style="width:300px;">
             <form action="/update_ninja" method="POST">
-                <input type="hidden" name="id" value="{{ninja.id}}">
+                <input type="hidden" name="ninja_id" value="{{ninja.id}}">
+                <input type="hidden" name="dojo_id" value="{{ninja.dojo_id}}">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" value="{{ninja.first_name}}" class="form-control">
                 <label for="last_name">Last Name:</label>
@@ -24,6 +25,6 @@
                 <input type="submit" value="Update Ninja" style="margin:10px 0px;">
             </form>
         </div>
-        <a href="/"style="font-size: 1.3rem; font-weight: 600;">Home</a>
+        <a href="/"style="font-size: 1.3rem; font-weight: 600;">Home</a> | <a href="#" onclick="history.back()" style="font-size:1.3rem; font-weight: 600;">Back to Dojo</a>
     </div>
 </body>

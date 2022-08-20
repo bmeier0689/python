@@ -26,12 +26,12 @@ class Ninja:
 
     @classmethod
     def get_one_ninja(cls, data):
-        query = "SELECT * FROM ninjas WHERE id = %(id)s;"
+        query = "SELECT * FROM ninjas WHERE id = %(ninja_id)s;"
         return connectToMySQL(db).query_db(query, data)
 
     @classmethod
     def update_ninja(cls, data):
-        query = "UPDATE ninjas SET first_name = %(first_name)s, last_name = %(last_name)s, age = %(age)s WHERE id = %(id)s"
+        query = "UPDATE ninjas SET first_name = %(first_name)s, last_name = %(last_name)s, age = %(age)s WHERE id = %(ninja_id)s"
         return connectToMySQL(db).query_db(query, data)
 
     @classmethod
