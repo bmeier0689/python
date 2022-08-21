@@ -33,4 +33,4 @@ def delete(id):
         'id': id
     }
     Ninja.delete_ninja(data)
-    return redirect('/')
+    return redirect(request.referrer)
