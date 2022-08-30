@@ -15,8 +15,10 @@ def new_user():
 @app.route('/add_user', methods=["POST"])
 def add_user():
     print(request.form)
-    User.save(request.form)
-    return redirect('/')
+    if User.validate_user(request.form):
+        User.save(request.form)
+        return redirect('/')
+    return redirect(request.referrer)
 
 @app.route('/user/<int:id>')
 def one_user(id):

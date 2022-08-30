@@ -15,13 +15,23 @@
     </div>
     <div class="container form-group col-6 my-3 mx-auto">
         <form action="/add_user" method="POST">
-            <label for="first_name" >First Name:</label>
+            <input type="hidden" name="id" id="{{dojo_id}}">
+            <label for="first_name">First Name:</label>
             <input type="text" name="first_name" class="form-control">
             <label for="last_name">Last Name:</label>
             <input type="text" name="last_name" class="form-control">
             <label for="email">Email:</label>
             <input type="text" name="email" class="form-control">
             <input type="submit" value="Create User" style="margin-top: 20px;">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <ul>
+                            <li>{{message}}</li>
+                        </ul>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
         </form>
     </div>
 </body>
