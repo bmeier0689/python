@@ -29,7 +29,7 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users (first_name, last_name, dob, email, password) VALUES ( %(first_name)s, %(last_name)s, %(dob)s, %(email)s, %(password)s );"
+        query = "INSERT INTO users (first_name, last_name, email, password) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s );"
         return connectToMySQL(db).query_db(query, data)
 
     @classmethod
@@ -73,7 +73,7 @@ class User:
         if len(results) >= 1:
             flash("Email is already in use. Please register", "register")
             is_valid = False
-        if len(user['first_name']) <= 0 or len(user['last_name']) <= 0 or len(user['dob']) <= 0 or len(['email']) <= 0 or len(user['password']) == 0:
+        if len(user['first_name']) <= 0 or len(user['last_name']) <= 0 or len(['email']) <= 0 or len(user['password']) == 0:
             flash("All fields required", "register")
             is_valid = False
             return is_valid

@@ -10,48 +10,49 @@
     <title>Login and Registration</title>
 </head>
 <body>
-    <div class="container d-flex my-5 mx-auto">
-        <div class="container bg-dark text-white" style="margin-right: 20px;">
-            <h1 class="text-danger text-center">Register</h1>
-            <form action="/register" method="POST" class="form-group">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" class="form-control">
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" class="form-control">
-                <label for="dob">Date of Birth:</label>
-                <input type="date" name="dob" class="form-control">
-                <label for="email">Email Address:</label>
-                <input type="email" name="email" class="form-control">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control">
-                <label for="confirm_pass">Confirm Password:</label>
-                <input type="password" name="confirm_pass" class="form-control">
-                <input type="submit" value="Register" class="btn btn-danger">
-                {% with messages = get_flashed_messages(category_filter=['register']) %}
+    <div class="container">
+        <h1 class="text-danger col-6 my-5 mx-auto text-center">Recipe Share</h1>
+        <div class="container d-flex my-5 mx-auto">
+            <div class="container bg-dark text-white" style="margin-right: 20px;">
+                <h1 class="text-success text-center">Register</h1>
+                <form action="/register" method="POST" class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" class="form-control">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" class="form-control">
+                    <label for="email">Email Address:</label>
+                    <input type="email" name="email" class="form-control">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control">
+                    <label for="confirm_pass">Confirm Password:</label>
+                    <input type="password" name="confirm_pass" class="form-control">
+                    <input type="submit" value="Register" class="btn btn-success">
+                    {% with messages = get_flashed_messages(category_filter=['register']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </form>
+            </div>
+            <div class="container bg-dark text-white">
+                <h1 class="text-success text-center">Login</h1>
+                <form action="/login" method="POST" class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" name="email" class="form-control">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control">
+                    <input type="submit" value="Login" class="btn btn-success">
+                    {% with messages = get_flashed_messages(category_filter=['login']) %}
                     {% if messages %}
                         {% for message in messages %}
                             <p>{{message}}</p>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
-            </form>
-        </div>
-        <div class="container bg-dark text-white">
-            <h1 class="text-success text-center">Login</h1>
-            <form action="/login" method="POST" class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" name="email" class="form-control">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control">
-                <input type="submit" value="Login" class="btn btn-success">
-                {% with messages = get_flashed_messages(category_filter=['login']) %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </body>
