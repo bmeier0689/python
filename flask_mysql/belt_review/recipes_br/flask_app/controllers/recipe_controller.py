@@ -38,8 +38,21 @@ def recipes():
     if 'user_id' not in session:
         return redirect('/logout')
     recipes = Recipe.get_all()
+    users = User.get_all()
     print(recipes)
-    return render_template("recipes.html", all_recipes = recipes)
+    return render_template("recipes.html", all_recipes = recipes, all_users = users)
+
+@app.route('/one_recipe/<int:id>')
+def one_recipe(id):
+    data = {
+        'id': id
+    }
+    recipe = Recipe.get_one_recipe(data)[0]
+    return render_template("recipe.html", all_recipes = recipe)
+
+@app.route('/new_recipe')
+def new_recipe():
+    return render_template('/new_recipe.html')
 
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
