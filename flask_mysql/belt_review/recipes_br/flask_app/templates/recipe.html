@@ -9,20 +9,33 @@
     <title>Recipes</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container bg-dark text-white col-6 my-5 mx-auto" style="padding: 10px;">
         <div class="container d-flex">
-            <h1>Welcome, </h1>
-            <div class="container d-flex justify-content-end align-items-end">
+            <h1 style="width: 400px;">Welcome, {{user.first_name}}</h1>
+            <div class="container d-flex justify-content-end align-items-end" style="font-weight: 600;">
                 <p><a href="/recipes" style="margin-right: 10px;">Back to recipes</a></p>
                 <p><a href="/logout">Logout</a></p>
             </div>
         </div>
         <div class="container">
-            <h1>{{recipe.name}}</h1>
+            <h3>{{recipe.name}}</h3>
             <p>Posted by: </p>
         </div>
-        <div class="container">
-            
+        <div class="container border border-white d-flex">
+            <div class="container row">
+                <div class="container col">
+                    <h5>Description:</h5>
+                    <h5>Under 30 minutes?</h5>
+                    <h5>Date Made:</h5>
+                    <h5>Instructions:</h5>
+                </div>
+                <div class="container col">
+                    <p>{{recipe.description}}</p>
+                    <p>{{recipe.thirty_min}}</p>
+                    <p>{{recipe.date_made}}</p>
+                    <p>{{recipe.instructions}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

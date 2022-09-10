@@ -1,3 +1,4 @@
+import email
 from flask_app import app
 from flask import render_template, request, redirect, flash, session
 from flask_app.models.user_model import User
@@ -28,6 +29,9 @@ def login():
     if user == False:
         flash("Please enter a valid email address", "login")
         return redirect('/')
+    if bcrypy.check_password_hash(user.password, request.form['password']) == False:
+        flash("Please input a valid password", "login")
+        return redirect('/')
     else:
         if bcrypy.check_password_hash(user.password, request.form['password']) == True:
             session['user_id'] = user.id
@@ -37,18 +41,22 @@ def login():
 def recipes():
     if 'user_id' not in session:
         return redirect('/logout')
+    data = {
+        'id': session['user_id']
+    }
     recipes = Recipe.get_all()
-    users = User.get_all()
-    print(recipes)
-    return render_template('recipes.html', all_recipes = recipes, all_users = users)
+    return render_template('recipes.html', all_recipes = recipes, user = User.get_by_id(data))
 
 @app.route('/one_recipe/<int:id>')
 def one_recipe(id):
     data = {
         'id': id
     }
+    user_name = {
+        'id': session['user_id']
+    }
     recipe = Recipe.get_one_recipe(data)[0]
-    return render_template('recipe.html', recipe = recipe)
+    return render_template('recipe.html', recipe = recipe, user = User.get_by_id(user_name))
 
 @app.route('/new_recipe')
 def new_recipe():

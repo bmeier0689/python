@@ -9,9 +9,12 @@
     <title>New Recipe</title>
 </head>
 <body>
-    <div class="container col-6 my-5 mx-auto">
-        <h1>Add a new recipe!</h1>
-        <!-- Put flash messages here -->
+    <div class="container col-4 my-5 mx-auto bg-dark text-white">
+        <div class="container d-flex justify-content-between">
+            <h1>Add a new recipe!</h1>
+            <a href="/recipes" class="align-self-center" style="font-weight: 600;">Back to recipes</a>
+            <!-- Put flash messages here -->
+        </div>
         <div class="container d-flex">
             <div class="row">
                 <div class="col">
@@ -22,10 +25,8 @@
                         <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                         <label for="instructions">Instructions:</label>
                         <textarea name="instructions" id="instructions" cols="30" rows="5" class="form-control"></textarea>
-                    </form>
                 </div>
                 <div class="col align-self-center">
-                    <form action="/add_recipe", method="POST" class="form-group">
                         <label for="date_made">Date Made:</label>
                         <input type="date" class="form-control">
                         <br>
