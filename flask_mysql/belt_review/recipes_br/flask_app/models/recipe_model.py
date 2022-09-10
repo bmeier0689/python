@@ -17,8 +17,8 @@ class Recipe:
         query = "SELECT * FROM recipes;"
         results = connectToMySQL(db).query_db(query)
         recipes = []
-        for recipe in recipes:
-            recipe.append(cls(recipe))
+        for recipe in results:
+            recipes.append(cls(recipe))
         return recipes
 
     @classmethod
@@ -28,8 +28,8 @@ class Recipe:
 
     @classmethod
     def get_one_recipe(cls, data):
-        query = "SELECT * FROM recipes WHERE id = %(recipe_id)s;"
-        return connectToMySQL(db).query_db(cls, data)
+        query = "SELECT * FROM recipes WHERE id = %(id)s;"
+        return connectToMySQL(db).query_db(query, data)
 
     @classmethod
     def update_recipe(cls, data):

@@ -40,7 +40,7 @@ def recipes():
     recipes = Recipe.get_all()
     users = User.get_all()
     print(recipes)
-    return render_template("recipes.html", all_recipes = recipes, all_users = users)
+    return render_template('recipes.html', all_recipes = recipes, all_users = users)
 
 @app.route('/one_recipe/<int:id>')
 def one_recipe(id):
@@ -48,17 +48,25 @@ def one_recipe(id):
         'id': id
     }
     recipe = Recipe.get_one_recipe(data)[0]
-    return render_template("recipe.html", all_recipes = recipe)
+    return render_template('recipe.html', recipe = recipe)
 
 @app.route('/new_recipe')
 def new_recipe():
-    return render_template('/new_recipe.html')
+    return render_template('new_recipe.html')
 
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
     print(request.form)
     Recipe.save(request.form)
     return redirect('/recipes')
+
+@app.route('/edit_recipe/<int:id>')
+def edit_recipe(id):
+    data = {
+        'id': id
+    }
+    recipe = Recipe.get_one_recipe(data)[0]
+    return render_template('edit_recipe.html', recipe = recipe)
 
 @app.route('/update_recipe', methods=['POST'])
 def update_recipe():

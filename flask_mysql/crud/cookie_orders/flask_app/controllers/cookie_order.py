@@ -1,5 +1,5 @@
+from flask import redirect, render_template, request, session
 from flask_app import app
-from flask import render_template, request, redirect, session
 from flask_app.models.cookie_order import Cookie_order
 
 @app.route('/')
