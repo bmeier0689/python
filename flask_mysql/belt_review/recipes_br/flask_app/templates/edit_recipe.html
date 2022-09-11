@@ -9,7 +9,7 @@
     <title>Edit Recipe</title>
 </head>
 <body>
-    <div class="container col-5 my-5 mx-auto bg-dark text-white" style="padding: 10px;">
+    <div class="container col-5 my-5 mx-auto bg-dark text-white" style="padding: 20px;">
         <div class="container d-flex">
             <h1 style="width: 500px;">Edit recipe</h1>
             <div class="container d-flex justify-content-end align-self-center" style="font-weight: 600;">
@@ -27,7 +27,7 @@
             {% endwith %}
         </div>
         <div class="container">
-            <div class="container row">
+            <div class="container row" style="padding: 0px 0px;">
                 <div class="container col">
                     <form action="/update_recipe" method="POST">
                     <input type="hidden" name="recipe_id" value="{{recipe.id}}">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="container col align-self-center">
                     <label for="date">Date Made:</label>
-                    <input type="date" name='date' class="form-control">
+                    <input type="date" name='date' class="form-control" value="{{recipe.date}}">
                     <br>
                     <label for="thirty_min">Under 30 minutes?:</label>
                     <input type="radio" name="thirty_min" id="thirty_min" value="yes">

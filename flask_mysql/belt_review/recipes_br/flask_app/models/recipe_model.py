@@ -42,9 +42,22 @@ class Recipe:
         return connectToMySQL(db).query_db(query, data)
 
     @classmethod
-    def get_one_recipe(cls, data):
-        query = "SELECT * FROM recipes WHERE id = %(id)s;"
-        return connectToMySQL(db).query_db(query, data)
+    def get_one_recipe(cls, id):
+        query = f"SELECT * FROM recipes LEFT JOIN users on recipes.user_id = users.id WHERE recipes.id = {id};"
+        results = connectToMySQL(db).query_db(query)
+        recipe = cls(results[0])
+        for row in results:
+            user_data = {
+                'id': row['users.id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': row['email'],
+                'password': row['password'],
+                'created_at': row['created_at'],
+                'updated_at': row['updated_at']
+            }
+            recipe.user = user_model.User(user_data)
+        return recipe
 
     @classmethod
     def update_recipe(cls, data):
@@ -69,5 +82,8 @@ class Recipe:
             is_valid = False
         if len(recipe['instructions']) <= 3:
             flash("Must provide some instructions!", "recipe")
+            is_valid = False
+        if len(recipe['date']) == 0:
+            flash("Please provide a date made", "recipe")
             is_valid = False
         return is_valid

@@ -12,15 +12,15 @@
     <div class="container col-6 my-5 mx-auto bg-dark text-white" style="padding: 10px;">
         <div class="container">
             <h1>Welcome, {{user.first_name}}</h1>
-            <p>All posted recipes:</p>
-            <div class="container d-flex justify-content-between" style="font-weight: 600;">
-                <p><a href="/logout">Logout</a></p>
+            <div class="container d-flex justify-content-between" style="font-weight: 600; padding: 0px 0px;">
                 <p><a href="/new_recipe">Add recipe</a></p>
+                <p><a href="/logout">Logout</a></p>
             </div>
+            <p>All posted recipes:</p>
         </div>
         <div class="container">
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
                     <tr>
                         <th>Name</th>
                         <th>Under 30 Min</th>
@@ -28,7 +28,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     {% for recipe in all_recipes %}
                     <tr>
                         <td>{{recipe.name}}</td>

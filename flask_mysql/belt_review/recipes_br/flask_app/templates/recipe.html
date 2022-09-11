@@ -9,18 +9,15 @@
     <title>Recipes</title>
 </head>
 <body>
-    <div class="container bg-dark text-white col-6 my-5 mx-auto" style="padding: 10px;">
-        <div class="container d-flex">
+    <div class="container bg-dark text-white col-6 my-5 mx-auto" style="padding: 20px;">
+        <div class="container d-flex justify-content-between align-items-end" style="font-weight: 600; padding: 0px 0px;">
             <h1 style="width: 400px;">Welcome, {{user.first_name}}</h1>
-            <div class="container d-flex justify-content-end align-items-end" style="font-weight: 600;">
-                <p><a href="/recipes" style="margin-right: 10px;">Back to recipes</a></p>
-                <p><a href="/logout">Logout</a></p>
-            </div>
-            <!-- Flash messages -->
+            <p><a href="/recipes" style="margin-right: 10px;">Back to recipes</a></p>
+            <p><a href="/logout">Logout</a></p>
         </div>
-        <div class="container">
+        <div class="container" style="padding: 0px;">
             <h3>{{recipe.name}}</h3>
-            <p>Posted by: </p>
+            <p>Posted by: {{recipe.user.first_name}} </p>
         </div>
         <div class="container border border-white d-flex">
             <div class="container row">

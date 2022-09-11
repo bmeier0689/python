@@ -48,14 +48,10 @@ def recipes():
 
 @app.route('/one_recipe/<int:id>')
 def one_recipe(id):
-    data = {
-        'id': id
-    }
     user_name = {
         'id': session['user_id']
     }
-    recipe = Recipe.get_one_recipe(data)[0]
-    return render_template('recipe.html', recipe = recipe, user = User.get_by_id(user_name))
+    return render_template('recipe.html', recipe = Recipe.get_one_recipe(id), user = User.get_by_id(user_name) )
 
 @app.route('/new_recipe')
 def new_recipe():
@@ -73,11 +69,7 @@ def add_recipe():
 
 @app.route('/edit_recipe/<int:id>')
 def edit_recipe(id):
-    data = {
-        'id': id
-    }
-    recipe = Recipe.get_one_recipe(data)[0]
-    return render_template('edit_recipe.html', recipe = recipe)
+    return render_template('edit_recipe.html', recipe = Recipe.get_one_recipe(id))
 
 @app.route('/update_recipe', methods=['POST'])
 def update_recipe():
