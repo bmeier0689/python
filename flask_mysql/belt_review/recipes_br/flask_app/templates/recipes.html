@@ -33,8 +33,12 @@
                     <tr>
                         <td>{{recipe.name}}</td>
                         <td>{{recipe.thirty_min}}</td>
-                        <td></td>
-                        <td><a href="/one_recipe/{{recipe.id}}">View</a> | <a href="/edit_recipe/{{recipe.id}}">Edit</a> | <a href="/delete/{{recipe.id}}">Delete</a></td>
+                        <td>{{recipe.user.first_name}}</td>
+                        <td><a href="/one_recipe/{{recipe.id}}">View</a> 
+                            {% if session.user_id == recipe.user_id %}
+                            |   <a href="/edit_recipe/{{recipe.id}}">Edit</a> | 
+                                <a href="/delete/{{recipe.id}}">Delete</a></td>
+                            {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

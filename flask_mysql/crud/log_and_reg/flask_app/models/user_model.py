@@ -4,7 +4,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 db = 'log_and_reg'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PWD_REGEX = re.compile(r'^(?P<password>((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[\!\"\§\$\%\&\/\(\)\=\?\+\*\#\'\^\°\,\;\.\:\<\>\ä\ö\ü\Ä\Ö\Ü\ß\?\|\@\~\´\`\\])\S{8,}))+$')
-NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
+NAME_REGEX = re.compile(r'^[a-zA-Z]{2,}$')
 
 class User:
     def __init__(self, data):
@@ -53,7 +53,7 @@ class User:
         if len(results) >= 1:
             flash("Email is already in use. Please register", "register")
             is_valid = False
-        if len(user['first_name']) <= 0 or len(user['last_name']) <= 0 or len(user['dob']) <= 0 or len(['email']) <= 0 or len(user['password']) == 0:
+        if len(user['first_name']) <= 1 or len(user['last_name']) <= 1 or len(user['dob']) == 0 or len(['email']) == 0 or len(user['password']) == 0:
             flash("All fields required", "register")
             is_valid = False
             return is_valid

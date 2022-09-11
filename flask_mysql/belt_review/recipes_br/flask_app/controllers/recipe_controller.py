@@ -1,4 +1,3 @@
-import email
 from flask_app import app
 from flask import render_template, request, redirect, flash, session
 from flask_app.models.user_model import User
@@ -60,11 +59,15 @@ def one_recipe(id):
 
 @app.route('/new_recipe')
 def new_recipe():
-    return render_template('new_recipe.html')
+    if 'user_id' in session:
+        return render_template('new_recipe.html')
 
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
+    if not Recipe.validate_recipe(request.form):
+        return redirect('/new_recipe')
     print(request.form)
+    user_id = session['user_id']
     Recipe.save(request.form)
     return redirect('/recipes')
 
@@ -78,6 +81,8 @@ def edit_recipe(id):
 
 @app.route('/update_recipe', methods=['POST'])
 def update_recipe():
+    if not Recipe.validate_recipe(request.form):
+        return redirect(request.referrer)
     print(request.form)
     Recipe.update_recipe(request.form)
     return redirect('/recipes')

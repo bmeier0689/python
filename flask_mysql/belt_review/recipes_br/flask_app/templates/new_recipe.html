@@ -13,12 +13,21 @@
         <div class="container d-flex justify-content-between">
             <h1>Add a new recipe!</h1>
             <a href="/recipes" class="align-self-center" style="font-weight: 600;">Back to recipes</a>
-            <!-- Put flash messages here -->
+        </div>
+        <div class="container text-danger">
+            {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </div>
         <div class="container d-flex">
             <div class="row">
                 <div class="col">
                     <form action="/add_recipe", method="POST" class="form-group">
+                        <input type="hidden" name="user_id" value="{{session.user_id}}">
                         <label for="name">Name:</label>
                         <input type="text" name="name" class="form-control">
                         <label for="description">Description:</label>
@@ -27,8 +36,8 @@
                         <textarea name="instructions" id="instructions" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="col align-self-center">
-                        <label for="date_made">Date Made:</label>
-                        <input type="date" class="form-control">
+                        <label for="date">Date Made:</label>
+                        <input type="date" name="date" class="form-control">
                         <br>
                         <label for="thirty_min">Under 30 minutes?:</label>
                         <input type="radio" name="thirty_min" id="thirty_min" value="yes">

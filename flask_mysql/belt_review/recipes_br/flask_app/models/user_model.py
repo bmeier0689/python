@@ -1,7 +1,8 @@
+from flask_app.models.recipe_model import Recipe
 from flask import flash
 import re
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.recipe_model import Recipe
+
 db = 'recipes_br'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PWD_REGEX = re.compile(r'^(?P<password>((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[\!\"\§\$\%\&\/\(\)\=\?\+\*\#\'\^\°\,\;\.\:\<\>\ä\ö\ü\Ä\Ö\Ü\ß\?\|\@\~\´\`\\])\S{8,}))+$')

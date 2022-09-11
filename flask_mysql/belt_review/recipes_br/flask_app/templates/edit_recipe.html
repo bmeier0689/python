@@ -9,35 +9,49 @@
     <title>Edit Recipe</title>
 </head>
 <body>
-    <div class="container col-6 my-5 mx-auto">
-        <h1>Edit recipe</h1>
-        <a href="/recipes">Back to recipes</a>
-        <div class="container form-group">
-            <form action="/update_recipe" method="POST">
-                <div class="container row">
-                    <div class="container col">
-                        <input type="hidden" name="recipe_id" value="{{recipe.id}}">
-                        <input type="hidden" name="user_id" value="{{recipe.user_id}}">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" value="{{recipe.name}}" class="form-control">
-                        <label for="description">Description:</label>
-                        <input type="text" name="description" value="{{recipe.description}}" class="form-control">
-                        <label for="instructions">Instructions:</label>
-                        <textarea name="instructions" id="instructions" cols="30" rows="10" class="form-control">{{recipe.instructions}}</textarea>
-                    </div>
-                    <div class="container col align-self-center">
-                        <label for="date_made">Date Made:</label>
-                        <input type="date" class="form-control">
-                        <br>
-                        <label for="thirty_min">Under 30 minutes?:</label>
-                        <input type="radio" name="thirty_min" id="thirty_min" value="yes">
-                        <label for="thirty_min">Yes</label>
-                        <input type="radio" name="thirty_min" id="thirty_min" value="no">
-                        <label for="thirty_min">No</label>
-                        <br>
-                        <input type="submit" value="Edit Recipe">
-                    </div>
+    <div class="container col-5 my-5 mx-auto bg-dark text-white" style="padding: 10px;">
+        <div class="container d-flex">
+            <h1 style="width: 500px;">Edit recipe</h1>
+            <div class="container d-flex justify-content-end align-self-center" style="font-weight: 600;">
+                <a href="/recipes" style="margin-right: 10px;">Back to recipes</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="container text-danger">
+            {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="container">
+            <div class="container row">
+                <div class="container col">
+                    <form action="/update_recipe" method="POST">
+                    <input type="hidden" name="recipe_id" value="{{recipe.id}}">
+                    <input type="hidden" name="user_id" value="{{recipe.user_id}}">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" value="{{recipe.name}}" class="form-control">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" value="{{recipe.description}}" class="form-control">
+                    <label for="instructions">Instructions:</label>
+                    <textarea name="instructions" id="instructions" cols="30" rows="10" class="form-control">{{recipe.instructions}}</textarea>
                 </div>
+                <div class="container col align-self-center">
+                    <label for="date">Date Made:</label>
+                    <input type="date" name='date' class="form-control">
+                    <br>
+                    <label for="thirty_min">Under 30 minutes?:</label>
+                    <input type="radio" name="thirty_min" id="thirty_min" value="yes">
+                    <label for="thirty_min">Yes</label>
+                    <input type="radio" name="thirty_min" id="thirty_min" value="no">
+                    <label for="thirty_min">No</label>
+                    <br>
+                    <input type="submit" value="Edit Recipe">
+                </div>
+            </div>
             </form>
         </div>
     </div>
